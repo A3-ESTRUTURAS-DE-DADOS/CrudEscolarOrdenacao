@@ -17,3 +17,11 @@ app.register_blueprint(routes)
 
 if __name__ == '__main__':
     app.run()
+    
+'''
+- Fazer o front da tabela
+- Fazer as rotas http (controller)
+- Fazer as rotas para puxar da api
+- Fazer as tabelas pelo flask (models)
+- Angular (views)
+'''
