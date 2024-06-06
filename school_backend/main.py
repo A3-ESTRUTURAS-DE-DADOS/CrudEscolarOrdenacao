@@ -5,9 +5,11 @@ from extensions import db, migrate, ma
 from flask_assets import Environment, Bundle
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres.zpawzfahadpotbvyfnfh:postgres@123@aws-0-sa-east-1.pooler.supabase.com:6543/postgres'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
-migrate.init_app(app)
+migrate.init_app(app,db)
 ma.init_app(app)
 
 assets = Environment(app)
