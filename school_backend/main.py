@@ -1,5 +1,4 @@
 import os
-from controller import routes
 from flask import Flask
 from extensions import db, migrate, ma
 from flask_assets import Environment, Bundle
@@ -13,6 +12,8 @@ migrate.init_app(app,db)
 ma.init_app(app)
 
 assets = Environment(app)
+
+from controller.controller import routes
 app.register_blueprint(routes)
 
 if __name__ == '__main__':
