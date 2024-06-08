@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'navbar-component',
@@ -7,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponentComponent implements OnInit {
   
-  items: any;
-
+  @Input() model: any[] = []
   constructor() {}
 
   ngOnInit() {}

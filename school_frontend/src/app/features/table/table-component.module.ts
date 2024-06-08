@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponentComponent } from './table-component/table-component.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
     declarations: [
         TableComponentComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        TableModule
     ],
     exports: [
         TableComponentComponent
     ]
 })
-export class TableModule {}
+export class TableComponentModule {}

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'content-page',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentPageComponent implements OnInit {
 
-  constructor() { }
+  items!: MenuItem[];
 
   ngOnInit() {
+    this.items = [
+      {
+        label: 'Alunos',
+        icon:  'pi pi-home',
+      },
+      {
+        label: 'Provas',
+        icon:  'pi pi-star',
+      }
+    ]
   }
 
 }

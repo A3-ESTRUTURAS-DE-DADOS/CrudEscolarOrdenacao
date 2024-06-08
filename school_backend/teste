@@ -1,0 +1,20 @@
+CREATE TABLE alunos (
+    id INT PRIMARY KEY,
+    nome VARCHAR(100),
+    idade INT,
+    endereco VARCHAR(200),
+    ano VARCHAR(100)
+);
+
+CREATE TABLE provas (
+    id INT PRIMARY KEY,
+    id_aluno INT,
+    nota FLOAT,
+    FOREIGN KEY (id_materias) REFERENCES materias(id),
+    FOREIGN KEY (id_aluno) REFERENCES alunos(id)
+);
+
+CREATE TABLE materias(
+    id INT PRIMARY KEY,
+    nome VARCHAR(100)
+);
