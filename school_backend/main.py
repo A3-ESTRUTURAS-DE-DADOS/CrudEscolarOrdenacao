@@ -17,8 +17,11 @@ from controller.controller import routes
 app.register_blueprint(routes)
 
 if __name__ == '__main__':
-    app.run()
-    
+    app.run(
+        port=os.getenv('PORT', 5000),
+        host=os.getenv('IP', 'localhost')
+    )
+
 '''
 - Fazer o front da tabela
 - Fazer as rotas http (controller)

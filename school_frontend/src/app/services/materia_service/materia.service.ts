@@ -16,7 +16,7 @@ export class MateriaService {
    ) { }
 
    getAluno(): Observable<Materia[]> {
-    return this.http.get<Materia[]>(this.baseURL);
+    return this.http.get<Materia[]>(`$(this.baseURL)/get/materias/`);
   }
 
   postMateria(materia: Materia) {

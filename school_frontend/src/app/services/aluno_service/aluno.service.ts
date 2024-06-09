@@ -17,7 +17,7 @@ export class ServiceService {
   ) { }
 
   getAluno(): Observable<Aluno[]> {
-    return this.http.get<Aluno[]>(this.baseURL);
+    return this.http.get<Aluno[]>(`$(this.baseURL)/get/alunos/`);
   }
 
   postAluno(aluno: Aluno) {

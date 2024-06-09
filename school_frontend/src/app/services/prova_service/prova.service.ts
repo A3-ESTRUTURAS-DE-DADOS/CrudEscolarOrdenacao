@@ -17,7 +17,7 @@ export class ProvaService {
   ) { }
 
   getProva(): Observable<Prova[]>{
-    return this.http.get<Prova[]>(this.baseURL);
+    return this.http.get<Prova[]>(`$(this.baseURL)/get/provas/`);
   }
 
   postProva(prova: Prova) {
