@@ -3,7 +3,7 @@ CREATE TABLE alunos (
     nome VARCHAR(100),
     idade INT,
     endereco VARCHAR(200),
-    ano VARCHAR(100)
+    ano_letivo VARCHAR(100)
 );
 
 CREATE TABLE provas (
