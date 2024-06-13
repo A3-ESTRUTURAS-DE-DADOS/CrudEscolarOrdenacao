@@ -1,7 +1,10 @@
 from flask import Blueprint, request, flash, session
 from flask import render_template, jsonify, redirect
 from extensions import db
-import datetime
+import datetime 
+from app import create_app
+
+app = create_app()
 
 routes = Blueprint('routes', __name__)
 

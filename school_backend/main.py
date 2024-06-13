@@ -1,25 +1,13 @@
 import os
-from flask import Flask
-from extensions import db, migrate, ma
-from flask_assets import Environment, Bundle
+from app import create_app
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres.zpawzfahadpotbvyfnfh:postgres@123@aws-0-sa-east-1.pooler.supabase.com:6543/postgres'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db.init_app(app)
-migrate.init_app(app,db)
-ma.init_app(app)
-
-assets = Environment(app)
-
-from controller.controller import routes
-app.register_blueprint(routes)
+app = create_app()
 
 if __name__ == '__main__':
     app.run(
         port=os.getenv('PORT', 5000),
-        host=os.getenv('IP', 'localhost')
+        host=os.getenv('IP', 'localhost'),
+        debug=True
     )
 
 '''
