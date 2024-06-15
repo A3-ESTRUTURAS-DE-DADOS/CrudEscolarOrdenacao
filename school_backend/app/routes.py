@@ -9,8 +9,16 @@ routes = Blueprint('routes', __name__)
 @routes.route('/get/alunos/', methods=['GET'])
 def get_alunos():
     try:
-        query = Aluno.query.order_by(Aluno.id).all()
-        return jsonify({'Alunos': [aluno.to_dict() for aluno in query]}), 200
+        alunos = Aluno.query.all()
+        
+        #OBS: para a ementa da A3, foi usado o bubble sort para ordenar os alunos por id
+        n = len(alunos)
+        for i in range(n):
+            for j in range(0, n-i-1):
+                if alunos[j].id > alunos[j+1].id:
+                    alunos[j], alunos[j+1] = alunos[j+1], alunos[j]
+        
+        return jsonify({'Alunos': [aluno.to_dict() for aluno in alunos]}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
