@@ -1,0 +1,23 @@
+agr abre outro terminal
+
+navega até o CrudEscolarOrdenacao\school_frontend e deixa o terminal aberto blz
+
+agora se vc não tiver o Node.js baixado, vai no site deles lá e baixa (eu recomendo a versão 22.2.0, q é a que eu to usando)
+ai faz a instalação ai
+(se pa tu vai precisar reiniciar o pc)
+
+dps de baixar, ou se vc já tiver o node, volta pro terminal
+
+da o comando 'npm install -g @angular/cli'
+
+dps de terminar, da um 'npm install', ele vai começar a baixar uma pá de coisa
+(se pa tu vai precisar reiniciar o pc dnv)
+
+ai dps vc volta pro diretorio do school_frontend (se vc ja tiver nele é melhor ainda)
+ai tu da o comando 'ng serve'
+
+LEMBRA DE DEIXAR O TERMINAL DO PYTHON ABERTO E RODANDO blz
+
+ai tu pega a url que o ng serve for te dar, e abre no navegador
+
+dps é só abraço

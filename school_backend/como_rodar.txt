@@ -1,0 +1,9 @@
+abre um terminal e vai no diretorio CrudEscolarOrdenacao\school_backend
+
+qnd tiver no diretorio, da um pip install -r requirements.txt
+
+dps que baixar tudo (se pa pode demorar), da um 'python main.py'
+
+agr segue o tutorial q eu meti la no school_frontend
+
+OBS: deixa esse terminal com o 'python main.py' rodando, é importante tlg
