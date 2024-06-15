@@ -7,24 +7,29 @@ import { Aluno } from '../../models/Aluno';
 @Injectable({
   providedIn: 'root'
 })
-
-export class ServiceService {
+export class AlunoService {
 
   baseURL = `${environment.urlAPI}`;
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   getAluno(): Observable<Aluno[]> {
-    return this.http.get<Aluno[]>(`$(this.baseURL)/get/alunos/`);
+    return this.http.get<Aluno[]>(`${this.baseURL}/get/alunos/`);
   }
 
-  postAluno(aluno: Aluno) {
-    return this.http.post(this.baseURL, aluno);
+  getAlunoById(id: number): Observable<Aluno> {
+    return this.http.get<Aluno>(`${this.baseURL}/get/alunos/${id}`);
   }
 
-  deleteAluno(id: number) {
-    return this.http.delete(`$(this.baseURL)/${id}`);
+  postAluno(aluno: Aluno): Observable<Aluno> {
+    return this.http.post<Aluno>(`${this.baseURL}/post/alunos/`, aluno);
+  }
+
+  putAluno(aluno: Aluno): Observable<Aluno> {
+    return this.http.put<Aluno>(`${this.baseURL}/put/alunos/${aluno.id}`, aluno);
+  }
+
+  deleteAluno(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseURL}/delete/alunos/${id}`);
   }
 }

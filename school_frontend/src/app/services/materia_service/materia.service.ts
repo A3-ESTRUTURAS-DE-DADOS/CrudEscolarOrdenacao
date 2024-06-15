@@ -11,19 +11,25 @@ export class MateriaService {
 
   baseURL = `${environment.urlAPI}`;
 
-  constructor(
-    private http: HttpClient
-   ) { }
+  constructor(private http: HttpClient) { }
 
-   getAluno(): Observable<Materia[]> {
-    return this.http.get<Materia[]>(`$(this.baseURL)/get/materias/`);
+  getMateria(): Observable<Materia[]> {
+    return this.http.get<Materia[]>(`${this.baseURL}/get/materias/`);
+  } 
+
+  getMateriaById(id: number): Observable<Materia> {
+    return this.http.get<Materia>(`${this.baseURL}/get/materias/${id}`);
   }
 
-  postMateria(materia: Materia) {
-    return this.http.post(this.baseURL, materia);
+  postMateria(materia: Materia): Observable<Materia> {
+    return this.http.post<Materia>(`${this.baseURL}/post/materias/`, materia);
   }
 
-  deleteMateria(id: number) {
-    return this.http.delete(`$(this.baseURL)/${id}`);
+  putMateria(materia: Materia): Observable<Materia> {
+    return this.http.put<Materia>(`${this.baseURL}/put/materias/${materia.id}`, materia);
+  }
+
+  deleteMateria(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseURL}/delete/materias/${id}`);
   }
 }

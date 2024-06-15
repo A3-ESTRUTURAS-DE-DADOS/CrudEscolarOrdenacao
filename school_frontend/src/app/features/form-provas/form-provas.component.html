@@ -1,0 +1,23 @@
+<p-button (click)="showDialog()" label="Novo"></p-button>
+
+<p-dialog header="Novo aluno" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+    <span class="p-text-secondary block mb-5">Cadastre um aluno</span>
+    <form [formGroup]="provaForm" (ngSubmit)="postProva()">
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="id_aluno" class="font-semibold w-6rem">Id do aluno</label>
+            <input pInputText formControlName="id_aluno" id="id_aluno" class="flex-auto" autocomplete="off" />
+        </div>
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="id_materia" class="font-semibold w-6rem">Id da matéria</label>
+            <input pInputText formControlName="id_materia" id="id_materia" class="flex-auto" autocomplete="off" />
+        </div>
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="nota" class="font-semibold w-6rem">Nota</label>
+            <input pInputText formControlName="nota" id="nota" class="flex-auto" autocomplete="off" />
+        </div>
+        <div class="flex justify-content-end gap-2">
+            <p-button label="Cancel" severity="secondary" (click)="visible = false"></p-button>
+            <button pButton type="submit" label="Save"></button>
+        </div>
+    </form>
+</p-dialog>

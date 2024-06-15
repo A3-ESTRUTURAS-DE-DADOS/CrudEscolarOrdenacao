@@ -10,9 +10,9 @@ routes = Blueprint('routes', __name__)
 def get_alunos():
     try:
         query = Aluno.query.order_by(Aluno.id).all()
-        return jsonify({'Alunos': [Aluno.to_dict(aluno) for aluno in query]}, 200)
+        return jsonify({'Alunos': [aluno.to_dict() for aluno in query]}), 200
     except Exception as e:
-        return jsonify({'error': str(e)})
+        return jsonify({'error': str(e)}), 500
 
 @routes.route('/get/alunos/<int:id>', methods=['GET'])
 def get_alunos_id(id):
@@ -28,16 +28,16 @@ def post_alunos():
         dataNome = request.json['nome']
         dataIdade = request.json['idade']
         dataEndereco = request.json['endereco']
-        dataAno = request.json['ano_letivo']
+        dataAno = request.json['ano']
         
         aluno = Aluno(nome=dataNome, idade=dataIdade, endereco=dataEndereco, ano_letivo=dataAno)
         
         db.session.add(aluno)
         db.session.commit()
         
-        return jsonify({'Aluno criado': Aluno.to_dict(aluno)}, 201)
+        return jsonify(aluno.to_dict()), 201
     except Exception as e:
-        return jsonify({'error': str(e)})
+        return jsonify({'error': str(e)}), 500
 
 @routes.route('/put/alunos/<int:id>', methods=['PUT'])
 def put_alunos(id: int):
@@ -70,10 +70,11 @@ def delete_alunos(id: int):
 @routes.route('/get/materias/', methods=['GET'])
 def get_materias():
     try:
-        query = Materia.query.order_by(Materia.id).all()
-        return jsonify({'Materias': [Materia.to_dict(materia) for materia in query]}, 200)
+        materias = Materia.query.order_by(Materia.id).all()
+        materias_list = [materia.to_dict() for materia in materias]
+        return jsonify({'Materias': materias_list}), 200
     except Exception as e:
-        return jsonify({'error': str(e)})
+        return jsonify({'error': str(e)}), 500
 
 @routes.route('/get/materias/<int:id>', methods=['GET'])
 def get_materias_id(id: int):
@@ -93,8 +94,7 @@ def post_materias():
         db.session.add(materia)
         db.session.commit()
         
-        return jsonify({'Materia criada': Materia.to_dict(materia)}, 201)
-    
+        return jsonify({'materia': materia.to_dict()}), 201
     except Exception as e:
         return jsonify({'error': str(e)})
 
@@ -121,14 +121,13 @@ def delete_materias(id: int):
         return jsonify({'error': str(e)})
 
 
-#rotas para provas
 @routes.route('/get/provas/', methods=['GET'])
 def get_provas():
     try:
         query = Prova.query.order_by(Prova.id).all()
-        return jsonify({'Provas': [Prova.to_dict(prova) for prova in query]}, 200)
-    except:
-        return jsonify({'error': str(e)})
+        return jsonify({'Provas': [prova.to_dict() for prova in query]}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @routes.route('/get/provas/<int:id>', methods=['GET'])
 def get_provas_id(id: int):
@@ -141,16 +140,16 @@ def get_provas_id(id: int):
 @routes.route('/post/provas/', methods=['POST'])
 def post_provas():
     try:
-        data = request.json
-        id_aluno = data['id_aluno']
-        id_materia = data['id_materia']
-        nota = data['nota']
+        id_aluno = request.json['id_aluno']
+        id_materia = request.json['id_materia']
+        nota = request.json['nota']
         
         prova = Prova(id_aluno=id_aluno, id_materia=id_materia, nota=nota)
         
+        db.session.add(prova) 
         db.session.commit()
         
-        return jsonify({'Nota de prova atualizada': prova.to_dict()}), 201
+        return jsonify({'prova': prova.to_dict()}), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

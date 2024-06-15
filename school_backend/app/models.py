@@ -27,7 +27,7 @@ class Aluno(db.Model):
         }
 
 class Materia(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome = db.Column(db.String(100), nullable=False)
     
     def init(self, id, nome):
@@ -44,7 +44,7 @@ class Materia(db.Model):
         }
 
 class Prova(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_aluno = db.Column(db.Integer, db.ForeignKey('aluno.id'), nullable=False)
     id_materia = db.Column(db.Integer, db.ForeignKey('materia.id'), nullable=False)
     nota = db.Column(db.Float, nullable=False)
