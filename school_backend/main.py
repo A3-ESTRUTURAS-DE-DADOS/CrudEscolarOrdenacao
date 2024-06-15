@@ -1,19 +1,21 @@
 import os
-from app import create_app
+from flask import Flask
+from config import Config
+from extensions import db, migrate
 
-app = create_app()
+app = Flask(__name__)
+
+app.config.from_object(Config)
+
+db.init_app(app)
+migrate.init_app(app, db)
+
+from app.routes import routes
+
+app.register_blueprint(routes)
 
 if __name__ == '__main__':
     app.run(
         port=os.getenv('PORT', 5000),
-        host=os.getenv('IP', 'localhost'),
-        debug=True
+        host=os.getenv('HOST', 'localhost')
     )
-
-'''
-- Fazer o front da tabela
-- Fazer as rotas http (controller)
-- Fazer as rotas para puxar da api
-- Fazer as tabelas pelo flask (models)
-- Angular (views)
-'''
