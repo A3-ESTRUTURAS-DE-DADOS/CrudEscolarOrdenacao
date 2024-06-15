@@ -75,10 +75,44 @@ def delete_alunos(id: int):
 
 
 #rotas para materias
+def merge_sort(arr):
+    if len(arr) > 1:
+        meio = len(arr) // 2
+        L = arr[:meio]
+        R = arr[meio:]
+
+        merge_sort(L)
+        merge_sort(R)
+
+        i = j = k = 0
+
+        while i < len(L) and j < len(R):
+            if L[i].id < R[j].id:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
+
 @routes.route('/get/materias/', methods=['GET'])
 def get_materias():
     try:
-        materias = Materia.query.order_by(Materia.id).all()
+        materias = Materia.query.all()
+        
+        #agora ta sendo usado o merge sort para ordenar as materias por id
+        merge_sort(materias)
+        
         materias_list = [materia.to_dict() for materia in materias]
         return jsonify({'Materias': materias_list}), 200
     except Exception as e:
@@ -129,13 +163,29 @@ def delete_materias(id: int):
         return jsonify({'error': str(e)})
 
 
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivo = arr[0]
+        menor = [x for x in arr[1:] if x.nota <= pivo.nota]
+        maior = [x for x in arr[1:] if x.nota > pivo.nota]
+        return quick_sort(maior) + [pivo] + quick_sort(menor)
+
 @routes.route('/get/provas/', methods=['GET'])
 def get_provas():
     try:
-        query = Prova.query.order_by(Prova.id).all()
-        return jsonify({'Provas': [prova.to_dict() for prova in query]}), 200
+        provas = Prova.query.all()
+        
+        # por fim, ta sendo usado o quick sort aqui para ordenar por NOTA
+        provas_quick = quick_sort(provas)
+        
+        provas_list = [prova.to_dict() for prova in provas_quick]
+        return jsonify({'Provas': provas_list}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
 
 @routes.route('/get/provas/<int:id>', methods=['GET'])
 def get_provas_id(id: int):
