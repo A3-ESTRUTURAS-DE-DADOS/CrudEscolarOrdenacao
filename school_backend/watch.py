@@ -4,6 +4,9 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import subprocess
 
+#Esse arquivo é só uma funcionalidade que implementamos para facilitar o desenvolvimento do projeto
+#O watchdog verifica atualizações no código e reinicia o servidor automaticamente
+
 class MyHandler(FileSystemEventHandler):
     def __init__(self, script_name):
         self.script_name = script_name

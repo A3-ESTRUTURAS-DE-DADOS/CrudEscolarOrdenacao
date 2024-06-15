@@ -6,6 +6,9 @@ from app.models import Aluno, Materia, Prova
 
 routes = Blueprint('routes', __name__)
 
+#Arquivo de definição das rotas HTTP
+
+#rota get de alunos (retorna todos os alunos de maneira ordenada por id usando o bubblesort)
 @routes.route('/get/alunos/', methods=['GET'])
 def get_alunos():
     try:
@@ -22,6 +25,7 @@ def get_alunos():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+#rotas get de alunos por id
 @routes.route('/get/alunos/<int:id>', methods=['GET'])
 def get_alunos_id(id):
     try:
@@ -29,7 +33,8 @@ def get_alunos_id(id):
         return jsonify(query)
     except Exception as e:
         return jsonify({'error': str(e)})
-        
+
+#rotas get de alunos
 @routes.route('/post/alunos/', methods=['POST'])
 def post_alunos():
     try:
@@ -47,6 +52,7 @@ def post_alunos():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+#rotas put de alunos
 @routes.route('/put/alunos/<int:id>', methods=['PUT'])
 def put_alunos(id: int):
     try:
@@ -62,6 +68,7 @@ def put_alunos(id: int):
     except Exception as e:
         return jsonify({'error': str(e)})
 
+#rotas delete de alunos
 @routes.route('/delete/alunos/{id}', methods=['DELETE'])
 def delete_alunos(id: int):
     try:
@@ -74,7 +81,8 @@ def delete_alunos(id: int):
         return jsonify({'error': str(e)})
 
 
-#rotas para materias
+
+#função de merge sort para ordenar as materias por id
 def merge_sort(arr):
     if len(arr) > 1:
         meio = len(arr) // 2
@@ -105,6 +113,7 @@ def merge_sort(arr):
             j += 1
             k += 1
 
+#rotas get de materias
 @routes.route('/get/materias/', methods=['GET'])
 def get_materias():
     try:
@@ -118,6 +127,7 @@ def get_materias():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+#rotas get de materias por id
 @routes.route('/get/materias/<int:id>', methods=['GET'])
 def get_materias_id(id: int):
     try:
@@ -126,6 +136,7 @@ def get_materias_id(id: int):
     except Exception as e:
         return jsonify({'error': str(e)})
 
+#rotas post de materias
 @routes.route('/post/materias/', methods=['POST'])
 def post_materias():
     try:
@@ -140,6 +151,7 @@ def post_materias():
     except Exception as e:
         return jsonify({'error': str(e)})
 
+#rotas put de materias
 @routes.route('/put/materias/<int:id>', methods=['PUT'])
 def put_materias(id: int):
     try:
@@ -152,6 +164,7 @@ def put_materias(id: int):
     except Exception as e:
         return jsonify({'error': str(e)})
 
+#rotas delete de materias
 @routes.route('/delete/materias/<int:id>', methods=['DELETE'])
 def delete_materias(id: int):
     try:
@@ -163,6 +176,7 @@ def delete_materias(id: int):
         return jsonify({'error': str(e)})
 
 
+#função de quick sort para ordenar as provas por nota
 def quick_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -172,6 +186,7 @@ def quick_sort(arr):
         maior = [x for x in arr[1:] if x.nota > pivo.nota]
         return quick_sort(maior) + [pivo] + quick_sort(menor)
 
+#rotas get de provas
 @routes.route('/get/provas/', methods=['GET'])
 def get_provas():
     try:
@@ -185,8 +200,7 @@ def get_provas():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-
-
+#rotas get de provas por id
 @routes.route('/get/provas/<int:id>', methods=['GET'])
 def get_provas_id(id: int):
     try:
@@ -195,6 +209,7 @@ def get_provas_id(id: int):
     except Exception as e:
         return jsonify({'error': str(e)})
 
+#rotas post de provas
 @routes.route('/post/provas/', methods=['POST'])
 def post_provas():
     try:
@@ -211,6 +226,7 @@ def post_provas():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+#rotas put de provas
 @routes.route('/put/provas/<int:id>', methods=['PUT'])
 def put_provas(id: int):
     try:
@@ -225,6 +241,7 @@ def put_provas(id: int):
     except Exception as e:
         return jsonify({'error': str(e)})
 
+#rotas delete de provas
 @routes.route('/delete/provas/<int:id>', methods=['DELETE'])
 def delete_provas(id: int):
     try:
